@@ -1,0 +1,50 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+<div class="row mx-auto" style="background-color:#9842FE"> 
+        <div class="col-sm-12">
+                <h1>Current Weather</h1><br>
+                <form>
+                        <input type="text" name="city" placeholder="weather search">
+                        <input type="submit" value="Search">
+                </form>
+        {% if weather %}
+        </div>
+
+        <div class="col-sm-6">
+                <img src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png">
+                <h1>{{weather.temperature}} &#8451</h1>
+                <p>{{weather.description}}</p>
+        </div>
+
+        <div class="col-sm-6"><br>
+                <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+                <p>Atmospheric pressure : <b>{{weather.pressure * 100}} Pa</b></p> 
+                <p>Humidity : <b>{{weather.humidity}} %</b></p> 
+                <p>Wind speed : <b>{{weather.speed}} m/s</b></p> 
+        {% else %}
+                <br>
+                <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Something went Wrong!!</strong> Please ReCheck and try agains
+                </div>
+        {% endif %}
+        </div>
+</div>
+
+<div class="row mx-auto" style="background-color:#9842FE"> 
+        <div class="col-sm-12">
+                <h1>COVID-19 NEWS</h1><br>
+                {% for news in covid %}
+                <div class="card mx-auto text-dark">
+                        <img class="card-img-top" src="{{news.urlToImage}}">
+                        <div class="card-body">
+                          <h4 class="card-title">{{news.title}}</h4>
+                          <p class="card-text">{{news.description}}</p>
+                          <a href="{{news.url}}">Read More..</a>
+                        </div>
+                </div>
+                {% endfor %}
+        </div>
+</div>
+{% endblock %}

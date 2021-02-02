@@ -1,0 +1,29 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+<div class="row mx-auto" style="background-color:#9842FE"> 
+        <div class="col-sm-12">
+                <h1>News</h1><br>
+                <form>
+                        <input type="text" name="search_news" placeholder="news search">
+                        <input type="submit" value="Search">
+                </form><br>
+                {% if search %}
+                        {% for news in search %}
+                        <div class="card mx-auto text-dark">
+                                <div class="card-body">
+                                <h4 class="card-title">{{news.title}}</h4>
+                                <p class="card-text">{{news.description}}</p>
+                                <a href="{{news.url}}">Read More..</a>
+                                </div>
+                        </div>
+                        {% endfor %}
+                {% else %}
+                <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Something went Wrong!!</strong> Please ReCheck and try agains
+                </div>
+                {% endif %}
+        </div>
+</div>
+{% endblock %}
